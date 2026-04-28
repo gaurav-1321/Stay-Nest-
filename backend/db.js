@@ -1,4 +1,4 @@
-const postgres=require("postgres");
+// const postgres=require("postgres");
 const { Pool } = require("pg");
 require("dotenv").config();
 
@@ -12,3 +12,6 @@ const pool = new Pool({
 pool.connect()
   .then(() => console.log("PostgreSQL Connected"))
   .catch(err => console.log(err));
+
+
+  module.exports = pool; 
