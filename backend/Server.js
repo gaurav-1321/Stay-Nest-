@@ -6,8 +6,11 @@ const postgres=require("postgres");
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use("/api/auth", require("./Routes/auth"));
+// Routes //base path
+app.use("/api/auth",require("./Routes/auth"));
+app.use("/api/auth",require("./Routes/auth"));
+
+
 
 app.listen(5000,()=>{
  console.log("server is running at 5000")

@@ -17,7 +17,7 @@ const Signup = () => {
 
       const data = await res.json().catch(() => ({}));
       console.log("STATUS:", res.status);
-console.log("DATA:", data);
+        console.log("DATA:", data);
 
       if (res.ok) {
         alert("Registered Successfully");
@@ -34,7 +34,7 @@ console.log("DATA:", data);
   };
 
   return (
-    <div className="bg-gray-300 px-40 py-10">
+    <div className="bg-gray-300 px-40 py-10 min-h-screen flex flex-col items-center">
       <h2>Signup to the page</h2>
       <form onSubmit={handleSignup}>
         <h4>Name:</h4>
@@ -63,7 +63,7 @@ console.log("DATA:", data);
         />
         <button 
           type="submit" 
-          className="font-semibold text-lg disabled:opacity-50"
+          className="font-semibold text-lg"
         >
         Submit
         </button>
