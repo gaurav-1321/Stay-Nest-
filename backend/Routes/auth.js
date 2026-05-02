@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const pool = require("../db");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken"); // Added for session management
+const jwt = require("jsonwebtoken"); 
 
-// Helper function to generate JWT
+
 const generateToken = (userId) => {
     return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };

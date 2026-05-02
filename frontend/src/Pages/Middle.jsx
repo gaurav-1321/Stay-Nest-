@@ -1,13 +1,14 @@
+
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
-
 const Middle = () => {
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/hotels/hotel');
+        const res = await axios.get("http://localhost:5000/api/hotels/hotel");
         console.log(res.data);
         alert("Data not fetched");
         const data = await res.json();

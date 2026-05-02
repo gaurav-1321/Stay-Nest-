@@ -1,7 +1,6 @@
 const express = require("express");
-const router = express.Router();
 const axios =require("axios");
-
+const router = require("express").Router();
 router.get("/hotel",async(req,res)=>{
 try{
    const response = await axios.get("https://serpapi.com/search.json", {
@@ -14,18 +13,15 @@ try{
           currency: "INR",
           gl: "in",
           hl: "en",
-          api_key:"c23fb0823ba5f1e621481c57d443384e580bc305dd233fa63a5421bd90f4b539", 
+          api_key: "c23fb0823ba5f1e621481c57d443384e580bc305dd233fa63a5421bd90f4b539", 
         },
       });
      console.log(response);
-      const hotels =
-        response.data.hotels_results ||
-        response.data.properties ||
-        [];
+  
   
     console.log(hotels);
   
-  const data=res.json();
+  return  res.json(hotels);
 
 
 }catch(error){
@@ -37,4 +33,4 @@ try{
 });
 
 
-module.export=router;
+module.exports = router;
