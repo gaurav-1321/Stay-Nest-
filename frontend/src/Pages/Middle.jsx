@@ -7,7 +7,7 @@ const Middle = () => {
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const res = await fetch("https://serpapi.com/search.json?engine=google_hotels&q=india&check_in_date=2026-05-05&check_out_date=2026-05-07&adults=2&currency=INR&api_key=c23fb0823ba5f1e621481c57d443384e580bc305dd233fa63a5421bd90f4b539");
+        const res = await fetch('http://localhost:5000/api/hotels/hotel');
         console.log(res.data);
         alert("Data not fetched");
         const data = await res.json();
