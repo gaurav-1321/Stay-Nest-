@@ -10,11 +10,9 @@ const Middle = () => {
       try {
         const res = await axios.get("http://localhost:5000/api/hotels/hotel");
         console.log(res.data);
-        alert("Data not fetched");
-        const data = await res.json();
+        const data = res.data;
         console.log(data);
-        console.log(data.hotels);
-        setHotels(data.properties || []);
+        setHotels(data.hotels || []);
       }
        catch (error) {
         console.error("Error fetching hotels:", error);
@@ -39,7 +37,7 @@ const Middle = () => {
               location={hotel.address}
               price={hotel.rate_per_night?.lowest}
               rating={hotel.overall_rating}
-              image={hotel.images?.[0]}
+              image={hotel.images?.[0].thumbnail}
             />
           ))
         ) : (
