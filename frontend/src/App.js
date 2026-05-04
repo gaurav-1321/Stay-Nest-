@@ -1,19 +1,26 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
+import Loginhost from './components/Loginhost';
 import Signup from './components/Signup';
+import Signuphost from './components/Signuphost';
 import Home from './Pages/Home';
-import Middle from './Pages/Middle';
+import Host from './Pages/Host';
+import Hostdashboard from './Pages/Hostdashboard';
+
 
 function App() {
   return (
   <>
-   <Home/>
   
       <Routes>
-        <Route path="/" element={<Middle/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/Signuphost" element={<Signuphost/>} />
+             <Route path="/Loginhost" element={<Loginhost/>} />
+             <Route path="/Hostdashboard" element={<Hostdashboard/>}/>
+        <Route path ="/host" element={<Host/>}  />
       </Routes>
   
   

@@ -32,12 +32,8 @@ const Login = () => {
 
   return (
     
-    <div className="bg-gray-300 px-40 py-10 min-h-screen flex flex-col items-center">
+    <div className="flex flex-col items-center justify-center min-h-[85vh] p-6 max-w-md mx-auto">
 
-
-
-
-      
       <h2 className="text-2xl font-bold mb-4">Login Page</h2>
       <form onSubmit={handlelogin} className="flex flex-col gap-3">
         <label className="font-semibold">Email:</label>

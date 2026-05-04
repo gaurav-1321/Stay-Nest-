@@ -16,6 +16,7 @@ const handleNearby = async () => {
   }
 };
   useEffect(()=>{
+    //if query empty setplaces null
     if (!query) {
   setplaces([]);
   return;
@@ -50,17 +51,17 @@ const handleNearby = async () => {
     setquery(place.name);
     setplaces([]);
   }
-
   const handlesearch = () => {
     if (!query) return;
     setplaces([]);
+    console.log(query);
   };
 
   return (
     <>
        <div className="relative w-full max-w-3xl mx-auto mt-6">
 
-      {/*  Search Bar */}
+      {/*  Search Bar error in overflow hideen and show*/}   
       <div className="flex items-center bg-white rounded-full shadow-lg overflow-visible">
 
         {/* Input */}
@@ -113,4 +114,4 @@ const handleNearby = async () => {
   )
 }
 
-export default Searchbar
+export default Searchbar;

@@ -27,9 +27,11 @@ const Header = () => {
   
   </Link>
 <Link to="/signup">
- <button className="font-semibold  text-lg text-white hover:shadow-xl">Signup</button>
+ <button className="font-semibold  text-lg text-white hover:shadow-xl m-4">Signup</button>
 </Link>
- 
+ <Link to="/host">
+ <button className="font-semibold  text-lg text-white hover:shadow-xl">Become a Host</button>
+</Link>
     </div>
 </div>
       

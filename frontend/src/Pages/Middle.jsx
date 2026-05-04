@@ -2,30 +2,38 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
-const Middle = () => {
-  const [hotels, setHotels] = useState([]);
+const Middle = ({query
+}) => {
+  console.log(query);
 
-  useEffect(() => {
+  const [hotels, setHotels] = useState([]);
+ 
+   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/hotels/hotel");
-        console.log(res.data);
+        const res = await axios.get("http://localhost:5000/api/hotels/hotel",
+          {
+            params:{q : query || "india"},
+          }
+        )
+      
+       
         const data = res.data;
-        console.log(data);
         setHotels(data.hotels || []);
       }
        catch (error) {
         console.error("Error fetching hotels:", error);
       }
     };
+     fetchHotels();
+    console.log(query);
     
-    fetchHotels();
-  }, []);
+  }, [query]);
 
   return (
     <div>
       <div className="text-2xl mt-3 ml-4 font-bold">
-        Popular Hotels in India
+        Popular in {query || "India"}
       </div>
       <div className="flex flex-wrap justify-start items-center">
         {hotels.length > 0 ? (

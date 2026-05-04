@@ -10,8 +10,8 @@ app.use(express.json());
 app.use("/api/auth",require("./Routes/auth"));
 app.use("/api/hotels",require("./Routes/hotels"));
 
-
-
+app.use("/api/hostauth",require("./Routes/hostauth"));
+app.use("/api/hostauth",require("./Routes/hostauth"))
 app.listen(5000,()=>{
  console.log("server is running at 5000")
 }

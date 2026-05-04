@@ -7,7 +7,7 @@ try{
    const response = await axios.get("https://serpapi.com/search.json", {
         params: {
           engine: "google_hotels",
-          q:q,
+          q,
           check_in_date: "2026-05-05",
           check_out_date: "2026-05-10",
           adults: 2,
