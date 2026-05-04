@@ -1,9 +1,12 @@
+import { Menu } from 'lucide-react';
+import { useState } from 'react';
 import { Link, NavLink } from "react-router-dom";
   const Navstyle = ({ isActive }) =>
   `relative text-white transition 
    after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-yellow-400 
    ${isActive ? "after:w-full font-semibold" : "after:w-0"}`;
 const Header = () => {
+  const [isopen,setisopen]=useState(false);
 
   return (
     <>
@@ -15,23 +18,34 @@ const Header = () => {
 
      <ul className="hidden md:flex items-center gap-8 font-semibold text-xl text-white" >
           <li><NavLink to="/" className={Navstyle}>Home</NavLink></li>
-          <li><NavLink to="/about" className={Navstyle}>About Us</NavLink></li>
           <li><NavLink to="/services" className={Navstyle} >Services</NavLink></li>
           <li><NavLink to="/experiances" className={Navstyle} >Experiences</NavLink></li>
         </ul> 
       
-       
-<div>
-  <Link to="/login">
-   <button className="font-semibold  text-lg text-white m-4">Login</button> 
+      <div className=""> 
+         <button 
+        onClick={() => setisopen(!isopen)}
+        className="flex items-center gap-3 p-3 bg-gray-800 rounded-full border border-gray-600 hover:shadow-md transition"
+      >
+        <Menu className="text-white" size={20} />
+      </button>
+      {isopen && (
+     <div className="absolute right-0 mt-3 w-56 bg-gray-800 rounded-2xl shadow-2xl py-4 flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200 items-center justify-start ">
+      <Link to="/about" className='w-full'>
+   <button className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black ">About Us</button> 
   
   </Link>
-<Link to="/signup">
- <button className="font-semibold  text-lg text-white hover:shadow-xl m-4">Signup</button>
+  <Link to="/login" className='w-full'>
+   <button className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black ">Login/Signup</button> 
+  
+  </Link>
+
+ <Link to="/host" className='w-full'>
+ <button className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black">Become a Host</button>
 </Link>
- <Link to="/host">
- <button className="font-semibold  text-lg text-white hover:shadow-xl">Become a Host</button>
-</Link>
+    </div>
+      )}
+
     </div>
 </div>
       

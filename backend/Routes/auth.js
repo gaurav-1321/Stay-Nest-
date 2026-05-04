@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 
 const generateToken = (userId) => {
-    return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
 
 // --- REGISTER ---
@@ -59,12 +59,18 @@ router.post("/login", async (req, res) => {
         if (!isValid) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
-
-
-        res.status(200).json({
-            message: "Login successful!",
+         const token = jwt.sign(
+                    { id: user.id, email: user.email }, 
+                    process.env.JWT_SECRET, 
+                    { expiresIn: '1d' } 
+                );
         
-        });
+                res.status(200).json({ 
+                    message: "You are logged in successfully",
+                    token: token,
+                    user: { id: user.id,email: user.email }
+                });
+        
 
     } catch (error) {
         console.error("LOGIN ERROR:", error.message);

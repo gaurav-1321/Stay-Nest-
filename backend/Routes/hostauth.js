@@ -45,9 +45,16 @@ router.post("/loginhost", async (req, res) => {
         if (!isValid) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
+        const token = jwt.sign(
+            { id: user.id, email: user.email }, 
+            process.env.JWT_SECRET, 
+            { expiresIn: '1d' } 
+        );
+
         res.status(200).json({ 
             message: "You are logged in successfully",
-          
+            token: token,
+            user: { id: user.id,email: user.email }
         });
 
     } catch (error) {

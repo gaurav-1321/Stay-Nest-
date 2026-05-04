@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Signuphost = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate=useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const Signuphost = () => {
 
       if (res.ok) {
         alert("Registered AS a host Successfully");
+        navigate("/loginhost")
         setName("");
         setEmail("");
         setPassword("");
