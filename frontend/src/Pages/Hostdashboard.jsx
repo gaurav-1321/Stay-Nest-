@@ -1,6 +1,6 @@
 import Dashbar from "../Dashboard-components/Dashbar"
 import Dashnavbar from "../Dashboard-components/Dashnavbar"
-import Outlet from "../Dashboard-components/Outlet"
+import { Outlet } from "react-router-dom";
 const Hostdashboard= () => {
   return (
     <>

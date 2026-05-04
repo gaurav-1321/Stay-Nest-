@@ -2,7 +2,7 @@
 const Dashnavbar = () => {
   return (
     <>
-    <header className="fixed top-0 left-0 w-full bg-gray-800 z-50">
+   <header className="w-full bg-gray-800">
       
       
         <div className="w-full px-8 h-20 flex items-center justify-between gap-4">
@@ -22,3 +22,6 @@ const Dashnavbar = () => {
 }
 
 export default Dashnavbar
+
+
+

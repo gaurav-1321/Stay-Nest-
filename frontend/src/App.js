@@ -19,32 +19,38 @@ import Hostdashboard from './Pages/Hostdashboard';
 
 
 function App() {
-  return (
-  <>
-  
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/Signuphost" element={<Signuphost/>} />
-             <Route path="/Loginhost" element={<Loginhost/>} />
-             <Route path="/Hostdashboard" element={<Hostdashboard/>}/>
-        <Route path ="/host" element={<Host/>}  />
-        
-      <Route path="/profile" element={<Profile/>} />
-      <Route path="/overview" element={<Overview/>} />
-    <Route path="/myproperties" element={<Myproperties/>} />
-    <Route path="/addproperties" element={<Addprop/>} />
-       <Route path="/revenue" element={<Revenue/>} />
-       <Route path="/bookings" element={<Bookings/>} />
-   <Route path="/reviews" element={<Review/>} />
-   <Route path="/help" element={<Help/>} />
-     
-  <Route path="/settings" element={<Settings/>} />
-  
-   </Routes>
-  
-  </>
+  return (  
+     <Routes>
+
+      {/* Public Routes */}
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/Signuphost" element={<Signuphost />} />
+      <Route path="/Loginhost" element={<Loginhost />} />
+      <Route path="/host" element={<Host />} />
+
+      {/* 🔥 Dashboard Layout Route */}
+      <Route path="/dashboard" element={<Hostdashboard />}>
+
+        {/* Default page */}
+        <Route index element={<Overview />} />
+
+        {/* Nested pages */}
+        <Route path="profile" element={<Profile />} />
+        <Route path="overview" element={<Overview />} />
+        <Route path="myproperties" element={<Myproperties />} />
+        <Route path="addproperties" element={<Addprop />} />
+        <Route path="revenue" element={<Revenue />} />
+        <Route path="bookings" element={<Bookings />} />
+        <Route path="reviews" element={<Review />} />
+        <Route path="help" element={<Help />} />
+        <Route path="settings" element={<Settings />} />
+
+      </Route>
+
+    </Routes>
+
   );
 }
 

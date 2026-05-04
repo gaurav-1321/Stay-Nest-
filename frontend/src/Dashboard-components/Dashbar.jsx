@@ -13,21 +13,21 @@ const Dashbar = () => {
     <div className="w-1/5 h-screen  bg-gray-900 text-gray-100 p-6 ">
     <div className="mb-8">
     <ul>
-      <li><NavLink to="/profile" className={Navstyle}>
+      <li><NavLink to="profile" className={Navstyle}>
       <User/> Profile  </NavLink></li>
-      <li><NavLink to="/overview" className={Navstyle}>
+      <li><NavLink to="overview" className={Navstyle}>
       <ChartNoAxesGantt/>
       Overview</NavLink></li>
-      <li><NavLink to="/myproperties" className={Navstyle}>
+      <li><NavLink to="myproperties" className={Navstyle}>
       <LucideTableProperties/>
       My properties</NavLink></li>
-      <li><NavLink to="/addproperties" className={Navstyle}>
+      <li><NavLink to="addproperties" className={Navstyle}>
       <Proportions/>
       Add Properties</NavLink></li>
-      <li><NavLink to="/revenue" className={Navstyle}>
+      <li><NavLink to="revenue" className={Navstyle}>
       <DollarSign/>
       Revenue Analysis</NavLink></li>
-      <li><NavLink to="/bookings" className={Navstyle}>
+      <li><NavLink to="bookings" className={Navstyle}>
       <HotelIcon/>
       Bookings</NavLink></li>
    
