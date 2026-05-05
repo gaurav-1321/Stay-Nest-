@@ -2,7 +2,7 @@ const router = require("express").Router();
 const pool = require("../db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const dotenv=require('dotenv').config();
 // signup host
 router.post("/signuphost", async (req, res) => {
     try {
@@ -45,16 +45,23 @@ router.post("/loginhost", async (req, res) => {
         if (!isValid) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
+
+        if (!process.env.JWT_SECRET) {
+            console.error("JWT_SECRET is missing from environment variables");
+            return res.status(500).json({ message: "Server configuration error" });
+        }
+
+        
         const token = jwt.sign(
             { id: user.id, email: user.email }, 
             process.env.JWT_SECRET, 
             { expiresIn: '1d' } 
         );
-
+        console.log(token);
         res.status(200).json({ 
             message: "You are logged in successfully",
             token: token,
-            user: { id: user.id,email: user.email }
+            user: { id: user.id, email: user.email }
         });
 
     } catch (error) {

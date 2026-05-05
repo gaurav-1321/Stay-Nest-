@@ -34,7 +34,8 @@ function App() {
       <Route path="/dashboard" element={<Hostdashboard />}>
 
         {/* Default page */}
-        <Route index element={<Overview />} />
+          <Route path="/dashboard" element={<Hostdashboard />}>
+        <Route index element={<Profile />} />
 
         {/* Nested pages */}
         <Route path="profile" element={<Profile />} />
@@ -46,12 +47,9 @@ function App() {
         <Route path="reviews" element={<Review />} />
         <Route path="help" element={<Help />} />
         <Route path="settings" element={<Settings />} />
-
+</Route>
       </Route>
 
-    </Routes>
-
-  );
+    </Routes> );
 }
-
 export default App;

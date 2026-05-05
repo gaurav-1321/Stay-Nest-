@@ -34,13 +34,13 @@ const Dashbar = () => {
     </ul>
     
     <ul >
-      <li><NavLink to="/feedback" className={Navstyle}>
+      <li><NavLink to="feedback" className={Navstyle}>
       <FolderEditIcon/>
       Reviews & Feedback </NavLink></li>
-     <li><NavLink to="/help" className={Navstyle}>
+     <li><NavLink to="help" className={Navstyle}>
      <BadgeHelpIcon/>
      Help & Support </NavLink></li>
-     <li><NavLink to="/settings" className={Navstyle}>
+     <li><NavLink to="settings" className={Navstyle}>
      <Settings/>
      Settings </NavLink></li>
     </ul>
