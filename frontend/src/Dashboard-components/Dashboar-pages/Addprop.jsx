@@ -6,12 +6,13 @@ const Addprop = () => {
   const [hostname,sethostname]=useState("");
   const [price,setprice]=useState("");
   const [desc,setdesc]=useState("");
-  const [images,setimages]=useState("");
+  const [images,setimages]=useState("/Animate.png");
 
 
  const handlesubmit=async(e)=>{
 e.preventDefault();
     const propdata = { propname, location, hostname, price, desc, images };
+    console.log(propdata);
    try{ const res= await fetch("http://localhost:5000/api/prop/create",{
       method:"POST",
       headers:{"Content-Type": "application/json"},
@@ -27,6 +28,7 @@ e.preventDefault();
       setlocation("");
       setprice("");
       setpropname("");
+      setimages("");
     }else{
       alert(data.message|| "error  .... not reached to database")
     }}
@@ -37,7 +39,7 @@ e.preventDefault();
  }
   return (
     <div>
-      <h2 className="text-4xl font-serif font-bold text-center text-gray-800 mb-8">Add Your Property  & <span></span>Be part of our us.</h2>
+      <h2 className="text-4xl font-serif font-bold text-center text-gray-800 mb-8">Add Your Property  & <span>Be part of our us.</span></h2>
       <form className="space-y-6" onSubmit={handlesubmit}>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       
@@ -92,7 +94,7 @@ e.preventDefault();
           <label className="text-lg font-serif font-semibold mb-2
           " >Images </label>
          
-         <Imageuploader setimages={setimages}/>
+         <Imageuploader setimages={"/Animate.jpg"}/>
          
         
         </div>

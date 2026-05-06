@@ -1,5 +1,7 @@
 import { ChevronRight, MapPin, Star } from "lucide-react";
-const Myproperties = ({image,rating,name,location,price}) => {
+const Myproperties = ({data}) => {
+
+console.log(data);
   return (
     <>
     <h2 className="text-4xl font-serif font-bold text-center text-gray-800 mb-8">Your Property with us.</h2>
@@ -8,27 +10,27 @@ const Myproperties = ({image,rating,name,location,price}) => {
 
       <div className="relative">
         <img
-          src={image}
-          alt={name}
+          src="/Animate.jpg"
+          alt=""
           className="w-full h-48 object-cover"
         />
 
         <div className="absolute top-3 left-3 bg-yellow-400 text-black px-2 py-1 rounded-md flex items-center text-sm font-semibold shadow">
           <Star size={14} className="mr-1 fill-yellow-500 text-yellow-500" />
-          {rating}
+          Rating
         </div>
       </div>
 
       <div className="p-5">
-        <h2 className="text-xl font-bold text-gray-800">{name}</h2>
+        <h2 className="text-xl font-bold text-gray-800">hello</h2>
 
         <div className="flex items-center font-semibold text-md mt-1">
           <MapPin size={16} className="mr-1" />
-          {location}
+          Doon
         </div>
 
         <div className="mt-3 text-lg font-semibold text-gray-800">
-          ₹{price} <span>/ night</span>
+          ₹2000<span>/ night</span>
         </div>
 
         <div className="mt-5 flex space-x-3">

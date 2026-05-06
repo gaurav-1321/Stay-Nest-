@@ -17,4 +17,29 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.get("/getdata",async(req,res)=>{
+
+  try{
+  const data= await pool.query("SELECT * FROM property");
+  res.status(200).json({
+    message: "data is fetched from database",
+      data: result.rows
+  });
+  console.log(data);
+  }
+
+  catch(error){
+    console.log("DB error cannot fetch data");
+    res.status(500).json({
+      message:"error in the server"
+    });
+  }
+})
+
+
+
+
+
+
+
 module.exports = router;

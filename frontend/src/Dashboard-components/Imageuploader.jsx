@@ -5,7 +5,8 @@ const Imageuploader = ({setimages}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const handleChange = (e) => {
-    const file=e.target.files[0];
+    const file=e.target.files[0] || "/Animate.jpg";
+    
     if (file) {
     const imageurl=URL.createObjectURL(file);
     setimages(imageurl)
@@ -14,11 +15,11 @@ const Imageuploader = ({setimages}) => {
         file,
         url: URL.createObjectURL(file)
       }));
-      setimages()
+      setimages(file || "./Animate.jpg");
       setSelectedFiles((prevImages) => prevImages.concat(filesArray));
     }
-  };
 
+  };
   const removeImage = (id, url) => {
     setSelectedFiles(selectedFiles.filter((img) => img.id !== id));
     URL.revokeObjectURL(url); 
@@ -58,9 +59,11 @@ const Imageuploader = ({setimages}) => {
             <button 
               type="button"
               onClick={() => removeImage(image.id, image.url)}
+            
               className="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full 
               flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 
  transition-opacity duration-200 shadow-md hover:bg-red-600 z-10"
+              
             >
               ✕
             </button>
