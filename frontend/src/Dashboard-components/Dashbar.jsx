@@ -18,12 +18,13 @@ const Dashbar = () => {
       <li><NavLink to="overview" className={Navstyle}>
       <ChartNoAxesGantt/>
       Overview</NavLink></li>
-      <li><NavLink to="myproperties" className={Navstyle}>
-      <LucideTableProperties/>
-      My properties</NavLink></li>
       <li><NavLink to="addproperties" className={Navstyle}>
       <Proportions/>
       Add Properties</NavLink></li>
+      <li><NavLink to="myproperties" className={Navstyle}>
+      <LucideTableProperties/>
+      My properties</NavLink></li>
+      
       <li><NavLink to="revenue" className={Navstyle}>
       <DollarSign/>
       Revenue Analysis</NavLink></li>

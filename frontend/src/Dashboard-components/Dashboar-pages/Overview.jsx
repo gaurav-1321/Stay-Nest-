@@ -1,14 +1,44 @@
 import { Chart } from "react-google-charts";
 
 const Overview = () => {
-  const data = [
-    ["Task", "Hours per Day"],
-    ["Work", 9],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7],
-  ];
+ const data = [
+  { month: "Jan", bookings: 54, available: 306 },
+  { month: "Feb", bookings: 39, available: 321 },
+  { month: "Mar", bookings: 61, available: 299 },
+  { month: "Apr", bookings: 60, available: 300 },
+  { month: "May", bookings: 74, available: 286 },
+  { month: "Jun", bookings: 92, available: 268 },
+  { month: "Jul", bookings: 114, available: 246 },
+  { month: "Aug", bookings: 108, available: 252 },
+  { month: "Sep", bookings: 71, available: 289 },
+  { month: "Oct", bookings: 61, available: 299 },
+  { month: "Nov", bookings: 65, available: 295 },
+  { month: "Dec", bookings: 93, available: 267 },
+];
+const chartdata=[
+  ["month","bookings","available"],
+  ...data.map((item)=>
+    [item.month,item.available,item.bookings],)
+
+];
+const options = {
+  title: "Bookings and Available Properties",
+  chartArea: { width: "100%",height:"70%" },
+  hAxis: {
+       title: "Month",
+    
+  },
+  vAxis: {
+ title: "bookings",
+  },
+  // series: {
+  //   0: { targetAxisIndex: 0, color: '#9400D3' },
+  //   1: { targetAxisIndex: 1, color: '#9f1239' }, 
+  //
+};
+
+
+
 
   return (
     <div className="p-4 md:p-8 bg-gray-50 min-h-screen">
@@ -43,22 +73,29 @@ const Overview = () => {
       </div>
 
     
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-2">
         
       
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h2 className="font-semibold text-lg mb-4">Revenue Overview</h2>
-          <div className="flex items-end gap-2 h-32 bg-gray-50 p-4 rounded border-b border-gray-300">
+        <div className=" w-full bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <h2 className="font-semibold text-lg mb-4"> Available Vs Booked Properties</h2>
+          <div className=" gap-2  bg-gray-50 p-4 rounded border-b border-gray-300">
           
-            <div className="w-full bg-blue-400 "> 
+            <div className="w-full bg-white "> 
+              <Chart
+              chartType="ColumnChart"
+              data={chartdata} 
+              width="100%"
+              height="500px"
+              options={options}
               
+              />
            </div>
           
           </div>
         </div>
 
-    
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      </div>
+       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
          
           <h2 className="font-semibold text-lg mb-4">Recent Notifications</h2>
           <div className="space-y-3">
@@ -73,8 +110,6 @@ const Overview = () => {
             </div>
           </div>
         </div>
-
-      </div>
     </div>
   );
 };

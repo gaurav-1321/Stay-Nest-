@@ -1,5 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import Loginhost from './components/Loginhost';
 import Signup from './components/Signup';
@@ -20,24 +19,20 @@ import Hostdashboard from './Pages/Hostdashboard';
 
 function App() {
   return (  
-     <Routes>
-
+    <Routes>
       {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/Signuphost" element={<Signuphost />} />
-      <Route path="/Loginhost" element={<Loginhost />} />
+      <Route path="/signup-host" element={<Signuphost />} /> {/* Cleaned path */}
+      <Route path="/loginhost" element={<Loginhost/>} />   {/* Cleaned path */}
       <Route path="/host" element={<Host />} />
 
-      {/* 🔥 Dashboard Layout Route */}
-      <Route path="/dashboard" element={<Hostdashboard />}>
-
-        {/* Default page */}
-          <Route path="/dashboard" element={<Hostdashboard />}>
-        <Route index element={<Profile />} />
-
-        {/* Nested pages */}
+  
+      <Route path="/Hostdashboard" element={<Hostdashboard/>}>
+      
+        <Route index element={<Navigate to="profile" replace />} />
+        
         <Route path="profile" element={<Profile />} />
         <Route path="overview" element={<Overview />} />
         <Route path="myproperties" element={<Myproperties />} />
@@ -47,9 +42,10 @@ function App() {
         <Route path="reviews" element={<Review />} />
         <Route path="help" element={<Help />} />
         <Route path="settings" element={<Settings />} />
-</Route>
       </Route>
 
-    </Routes> );
+    
+    </Routes> 
+  );
 }
-export default App;
+export default App
