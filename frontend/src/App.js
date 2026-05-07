@@ -6,16 +6,16 @@ import Signuphost from './components/Signuphost';
 import Addprop from './Dashboard-components/Dashboar-pages/Addprop';
 import Bookings from './Dashboard-components/Dashboar-pages/Bookings';
 import Help from './Dashboard-components/Dashboar-pages/Help';
-import Myproperties from './Dashboard-components/Dashboar-pages/Myproperties';
+import Myprop from './Dashboard-components/Dashboar-pages/Myprop';
 import Overview from './Dashboard-components/Dashboar-pages/Overview';
 import Profile from './Dashboard-components/Dashboar-pages/Profile';
 import Revenue from './Dashboard-components/Dashboar-pages/Revenue';
 import Review from './Dashboard-components/Dashboar-pages/Review';
 import Settings from './Dashboard-components/Dashboar-pages/Settings';
+import Viewdetail from './Dashboard-components/Dashboar-pages/Viewdetail';
 import Home from './Pages/Home';
 import Host from './Pages/Host';
 import Hostdashboard from './Pages/Hostdashboard';
-
 
 function App() {
   return (  
@@ -27,7 +27,7 @@ function App() {
       <Route path="/signup-host" element={<Signuphost />} /> {/* Cleaned path */}
       <Route path="/loginhost" element={<Loginhost/>} />   {/* Cleaned path */}
       <Route path="/host" element={<Host />} />
-
+ 
   
       <Route path="/Hostdashboard" element={<Hostdashboard/>}>
       
@@ -35,16 +35,17 @@ function App() {
         
         <Route path="profile" element={<Profile />} />
         <Route path="overview" element={<Overview />} />
-        <Route path="myproperties" element={<Myproperties />} />
+        <Route path="myproperties" element={<Myprop />} />
         <Route path="addproperties" element={<Addprop />} />
         <Route path="revenue" element={<Revenue />} />
         <Route path="bookings" element={<Bookings />} />
         <Route path="reviews" element={<Review />} />
         <Route path="help" element={<Help />} />
         <Route path="settings" element={<Settings />} />
+         <Route path="myproperties/viewdetail" element= {<Viewdetail/>} />
       </Route>
 
-    
+
     </Routes> 
   );
 }

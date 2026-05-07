@@ -2,7 +2,7 @@
 const Help = () => {
   return (
     <div>
-      Help and support
+    
     </div>
   )
 }

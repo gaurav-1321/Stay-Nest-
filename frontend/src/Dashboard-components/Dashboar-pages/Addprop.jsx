@@ -29,7 +29,7 @@ e.preventDefault();
       setpropname("");
       setimages("");
     }else{
-      alert(data.message|| "error  .... not reached to database")
+      alert(data.message|| "error not reached to database")
     }}
     catch(error){
       console.error("Error in db");
