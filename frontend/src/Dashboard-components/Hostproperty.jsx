@@ -8,10 +8,14 @@ const [properties,setproperties]=useState("");
 
 
       try{
-        const res=fetch("http://localhost:5000/api/prop/getdata");
-  const result=res.json();
-  console.log(result);
-   setproperties(result.data);
+        const res=await fetch("http://localhost:5000/api/prop/getdata");
+        const result = await res.json();
+        
+        console.log("API Result:", result);
+        const finalData = result.data || res.data; 
+        console.log(res.data);
+        console.log(finalData);
+   setproperties(finalData);
 
       }catch(error){
       console.log('error fetching in my properties');
@@ -23,7 +27,7 @@ const [properties,setproperties]=useState("");
   return (
     <div >
       <Myproperties
-      data={data}
+      data={properties}
       
       />
     </div>

@@ -9,7 +9,7 @@ const Imageuploader = ({setimages}) => {
     
     if (file) {
     const imageurl=URL.createObjectURL(file);
-    setimages(imageurl)
+    setimages(imageurl);
       const filesArray = Array.from(e.target.files).map((file) => ({
         id: crypto.randomUUID(),
         file,

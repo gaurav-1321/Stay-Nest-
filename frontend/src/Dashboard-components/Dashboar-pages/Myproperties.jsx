@@ -1,7 +1,6 @@
 import { ChevronRight, MapPin, Star } from "lucide-react";
 const Myproperties = ({data}) => {
 
-console.log(data);
   return (
     <>
     <h2 className="text-4xl font-serif font-bold text-center text-gray-800 mb-8">Your Property with us.</h2>
@@ -22,17 +21,20 @@ console.log(data);
       </div>
 
       <div className="p-5">
-        <h2 className="text-xl font-bold text-gray-800">hello</h2>
+        <h2 className="text-xl font-bold text-gray-800">{data.propname} <sapn>By {data.hostname} </sapn>     </h2>
 
         <div className="flex items-center font-semibold text-md mt-1">
           <MapPin size={16} className="mr-1" />
-          Doon
+          {data.location}
         </div>
 
         <div className="mt-3 text-lg font-semibold text-gray-800">
-          ₹2000<span>/ night</span>
+          ₹{data.price}<span>/ night</span>
         </div>
 
+        <div className="mt-3 text-lg font-semibold text-gray-800">
+         {data.desc}
+        </div>
         <div className="mt-5 flex space-x-3">
           <button className="flex-1 flex items-center justify-center px-4 py-2 rounded text-white bg-pink-600">
             View Detail <ChevronRight size={16} className="ml-1" />
