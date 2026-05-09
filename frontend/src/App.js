@@ -42,7 +42,7 @@ function App() {
         <Route path="reviews" element={<Review />} />
         <Route path="help" element={<Help />} />
         <Route path="settings" element={<Settings />} />
-         <Route path="myproperties/viewdetail" element= {<Viewdetail/>} />
+         <Route path="myproperties/viewdetail/:id" element= {<Viewdetail/>} />
       </Route>
 
 

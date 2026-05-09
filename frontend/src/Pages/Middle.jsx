@@ -13,10 +13,9 @@ const Middle = ({query
       try {
         const res = await axios.get("http://localhost:5000/api/hotels/hotel",
           {
-            params:{q : query || "india"},
+            params:{q : query || "london"},
           }
         )
-      
        
         const data = res.data;
         setHotels(data.hotels || []);

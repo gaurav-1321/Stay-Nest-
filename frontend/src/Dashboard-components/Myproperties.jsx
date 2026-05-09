@@ -12,13 +12,15 @@ const Myproperties = ({data}) => {
     
       {data && data.length > 0 ? (
         data.map((item, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden  m-5 p-2 border">
+        
+          <div key={item.id || index} className="bg-white rounded-lg shadow-lg overflow-hidden  m-5 p-2 border">
             <div className="relative">
               <img src={item.image} alt="" className="w-full h-48 object-cover hover:bg-slate-200" />
               
             </div>
 
             <div className="p-5">
+          
               <h2 className="text-xl font-bold text-gray-800">
                 {item.propname} 
                 <br/>
@@ -35,7 +37,8 @@ const Myproperties = ({data}) => {
                 {item.desc}
               </div>
               <div className="mt-5 flex space-x-3">
-                <NavLink to={`viewdetail`}>
+
+                <NavLink to={`/Hostdashboard/myproperties/viewdetail/${index}`}>
                   <button 
                 
                 className="flex-1 flex items-center justify-center px-4 py-2 rounded text-white bg-pink-600">
