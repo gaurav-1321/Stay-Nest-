@@ -19,16 +19,21 @@ const Login = () => {
       });
 
       const data = await res.json().catch(() => ({}));
-
-      if (res.ok) {
-        alert("Login Successful");
-        navigate("/");
-        setEmail("");
-        setPassword("");
-  
+      console.log(data);
+    if(res.ok){
+     if (data.type === "admin" || data.user.type === "admin") {
+        alert("Login as Admin successful");
+        navigate("/admin-dash");
       } else {
-        alert(data.message || "Login Failed");
-      }
+    
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user)); 
+
+      alert("Login Successful");
+      navigate("/");
+      window.location.reload();  
+  
+      }}
     } catch (error) {
       console.error("Login Error:", error);
       alert("Cannot connect to server.");
@@ -41,7 +46,7 @@ const Login = () => {
       <div className="max-w-6xl w-full border-2 border-b-gray-100 bg-blue-50 rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2">
         <div className="flex flex-col items-center justify-center min-h-[70vh] p-6 max-w-md mx-auto">
           {/* Changed text to Login */}
-          <h2 className="text-4xl font-bold text-gray-800 mb-10">Host Login</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-10">Login</h2>
           
           <form onSubmit={handlelogin}>
             <input
@@ -68,7 +73,7 @@ const Login = () => {
             </button>
             <p className="text-center mt-8 text-gray-600 text-xl ">
               Don't have a host account?{" "}
-              <Link to="/signup-host" className="text-rose-500 hover:underline text-xl font-semibold ">
+              <Link to="/signup" className="text-rose-500 hover:underline text-xl font-semibold ">
                 Sign Up
               </Link>
             </p>

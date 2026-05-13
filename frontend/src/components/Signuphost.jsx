@@ -14,8 +14,6 @@ const Signuphost = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       });
-  
-
       const data = await res.json().catch(() => ({}));
       console.log("STATUS:", res.status);
         console.log("DATA:", data);

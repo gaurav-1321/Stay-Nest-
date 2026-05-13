@@ -7,7 +7,13 @@ import { Link, NavLink } from "react-router-dom";
    ${isActive ? "after:w-full font-semibold" : "after:w-0"}`;
 const Header = () => {
   const [isopen,setisopen]=useState(false);
+  const [islogin] = useState(!!localStorage.getItem("token"));
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
   return (
     <>
     <header className="fixed top-0 left-0 w-full bg-transparent backdrop-blur-sm z-50">
@@ -23,7 +29,7 @@ const Header = () => {
         </ul> 
       
       <div className=""> 
-         <button 
+           <button 
         onClick={() => setisopen(!isopen)}
         className="flex items-center gap-3 p-3 bg-gray-800 rounded-full border border-gray-600 hover:shadow-md transition"
       >
@@ -35,10 +41,22 @@ const Header = () => {
    <button className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black ">About Us</button> 
   
   </Link>
-  <Link to="/login" className='w-full'>
-   <button className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black ">Login/Signup</button> 
   
+{ !islogin ? (
+  <Link to="/login" className='w-full' onClick={() => setisopen(false)}>
+    <button className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black">
+      Login/Signup
+    </button>
   </Link>
+) : (
+  <button 
+    onClick={handleLogout} 
+    className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black">
+    Logout
+  </button>
+)}
+
+ 
 
  <Link to="/host" className='w-full'>
  <button className="w-full text-left px-5 py-2 font-semibold text-lg text-white hover:bg-white hover:text-black">Become a Host</button>

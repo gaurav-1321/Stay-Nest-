@@ -31,7 +31,7 @@ const Viewdetail = () => {
               
               <img src="/Animate.jpg" alt="" className="mt-5 w-65 h-60 rounded-lg shadow-sm" />
               
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-10 gap-6 flex flex-wrap">
                 <NavLink to={`/edit/${id}`}>
                   <button className="bg-purple-700 p-3 font-bold text-white text-xl hover:bg-purple-800 shadow-md rounded-md">
                     Edit Property
@@ -46,29 +46,29 @@ const Viewdetail = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4 p-5">
-              {/* Revenue Card */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h3 className="text-gray-500 text-sm uppercase tracking-wider font-semibold">Revenue Generated</h3>
                 <p className="text-3xl font-bold mt-2 text-green-600">₹1,50,000</p>
               </div>
-
-              {/* Bookings Card */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h3 className="text-gray-500 text-sm uppercase tracking-wider font-semibold">Total Bookings</h3>
                 <p className="text-3xl font-bold mt-2 text-blue-600">25</p>
               </div>
-
-              {/* Cancellations Card */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h3 className="text-gray-500 text-sm uppercase tracking-wider font-semibold">Total Cancellations</h3>
+                <h3 className="text-gray-500 text-sm tracking-wider font-semibold">Total Cancellations</h3>
                 <p className="text-3xl font-bold mt-2 text-red-600">10</p>
               </div>
             </div>
-          </div> /* Closing the first grid */
+          </div> 
         )}
 
         {item && (
+         
           <div className="space-y-6 p-6">
+             <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <h2 className="font-bold mb-3 text-2xl">Description</h2>
+                <h3 className="text-gray-600 text-xl font-semibold">{item.data.desc}</h3>
+              </div>
             <div className="bg-gray-100 p-4 rounded-xl border border-gray-200 shadow-md">
               <h2 className="font-bold mb-3 text-2xl">Customer Feedback</h2>
               <ul className="space-y-4">

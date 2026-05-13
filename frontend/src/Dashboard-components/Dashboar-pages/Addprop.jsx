@@ -8,10 +8,9 @@ const Addprop = () => {
   const [desc,setdesc]=useState("");
   const [images,setimages]=useState("/Animate.png");
 
-
  const handlesubmit=async(e)=>{
 e.preventDefault();
-    const propdata = { propname, location, hostname, price, desc, images };
+    const propdata = {propname, location, hostname, price, desc, images };
    try{ const res= await fetch("http://localhost:5000/api/prop/create",{
       method:"POST",
       headers:{"Content-Type": "application/json"},
@@ -35,7 +34,6 @@ e.preventDefault();
       console.error("Error in db");
       alert("cannot connect to server");
     }
-    console.log(propdata);
  }
   return (
     <div>

@@ -38,7 +38,4 @@ router.get("/getdata", async (req, res) => {
 
 
 
-
-
-
 module.exports = router;

@@ -1,54 +1,36 @@
-
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
-const Middle = ({query
-}) => {
-  console.log(query);
 
+const Middle = ({ query }) => {
   const [hotels, setHotels] = useState([]);
- 
-   useEffect(() => {
-    const fetchHotels = async () => {
+
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/hotels/hotel",
-          {
-            params:{q : query || "london"},
-          }
-        )
-       
-        const data = res.data;
-        setHotels(data.hotels || []);
-      }
-       catch (error) {
-        console.error("Error fetching hotels:", error);
+        const res = await fetch("http://localhost:5000/api/hotels/get");
+        const result = await res.json();
+        setHotels(result.data);
+      } catch (error) {
+        console.error('Error fetching data');
       }
     };
-     fetchHotels();
-    console.log(query);
-    
-  }, [query]);
+    fetchData();
+  }, []);
 
   return (
-    <div>
-      <div className="text-2xl mt-3 ml-4 font-bold">
-        Popular in {query || "India"}
+    <div className="bg-gray-50 min-h-screen pb-10">
+      <div className="text-2xl pt-6 ml-8 font-bold text-gray-800">
+        {"India"}
       </div>
-      <div className="flex flex-wrap justify-start items-center">
+
+      <div className="flex flex-wrap justify-start items-start px-4">
         {hotels.length > 0 ? (
-          hotels.map((hotel) => (
-            <Card
-              key={hotel.id || hotel.name}
-              id={hotel.id}
-              name={hotel.name}
-              location={hotel.address}
-              price={hotel.rate_per_night?.lowest}
-              rating={hotel.overall_rating}
-              image={hotel.images?.[0].thumbnail}
-            />
-          ))
+
+            <Card  data={hotels} />
         ) : (
-          <p className="ml-4 mt-2">No hotels found.</p>
+          <div className="ml-4 mt-10 text-gray-500">
+            No properties found in database...
+          </div>
         )}
       </div>
     </div>

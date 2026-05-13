@@ -30,11 +30,7 @@ const options = {
   },
   vAxis: {
  title: "bookings",
-  },
-  // series: {
-  //   0: { targetAxisIndex: 0, color: '#9400D3' },
-  //   1: { targetAxisIndex: 1, color: '#9f1239' }, 
-  //
+  }
 };
 
 

@@ -1,8 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Admindash from './Admindash';
 import Login from './components/Login';
 import Loginhost from './components/Loginhost';
 import Signup from './components/Signup';
 import Signuphost from './components/Signuphost';
+import Viewdeal from './components/Viewdeal';
 import Addprop from './Dashboard-components/Dashboar-pages/Addprop';
 import Bookings from './Dashboard-components/Dashboar-pages/Bookings';
 import Help from './Dashboard-components/Dashboar-pages/Help';
@@ -24,13 +26,13 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/signup-host" element={<Signuphost />} /> {/* Cleaned path */}
-      <Route path="/loginhost" element={<Loginhost/>} />   {/* Cleaned path */}
+      <Route path="/signuphost" element={<Signuphost />} /> 
+      <Route path="/loginhost" element={<Loginhost/>} />   
       <Route path="/host" element={<Host />} />
- 
-  
+      <Route path="/viewdeal" element={<Viewdeal/>}/>
+         <Route path="/admin-dash" element={<Admindash/>}/>
       <Route path="/Hostdashboard" element={<Hostdashboard/>}>
-      
+   
         <Route index element={<Navigate to="profile" replace />} />
         
         <Route path="profile" element={<Profile />} />

@@ -76,12 +76,22 @@ router.post("/login", async (req, res) => {
         if (!isValid) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
+         const token = generateToken(user);
+       //check for admin
+      if (user.type === "admin") {
 
-        // Generate Token using the helper
-        const token = generateToken(user);
-        
-        //Success Response
-        res.status(200).json({ 
+    return res.status(200).json({
+        message: "Admin Login",
+        token: token, 
+        user: { 
+            id: user.id, 
+            email: user.email, 
+            type: user.type
+        }
+    });
+}else{
+    //normal user
+   return res.status(200).json({ 
             message: "Logged in successfully",
             token: token,
             user: { 
@@ -90,6 +100,8 @@ router.post("/login", async (req, res) => {
                 name: user.name 
             }
         });
+
+}
 
     } catch (error) {
         console.error("LOGIN ERROR:", error.message);
