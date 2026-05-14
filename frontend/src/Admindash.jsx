@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Admindash = ({data}) => {
-
-
-
-
+const Admindash = () => {
 const [propts,setpropts]=useState([]);
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -14,9 +10,9 @@ const [propts,setpropts]=useState([]);
 useEffect(() => {
     const fetchdata = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/prop/getdata");
+        const res = await fetch('http://localhost:5000/api/prop/admindata');
         const result = await res.json();
-        
+        console.log(result);
         setpropts(result.data);
       } catch (error) {
         console.error('error fetching in my properties');
@@ -62,6 +58,24 @@ useEffect(() => {
               </tr>
             </thead>
             <tbody>
+              {propts && propts.length > 0 ? (
+    propts.map((item) => (
+      <tr key={item.prop_id} className="hover:bg-gray-50 text-center">
+        <td className="border p-3">{item.prop_id}</td>
+        <td className="border p-3">{item.name}</td>
+        <td className="border p-3">
+          object
+        </td>
+        <td className="border p-3 text-sm text-gray-500">{item.host_email}</td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="4" className="border p-3 text-center text-gray-500">
+        No administrative records found.
+      </td>
+    </tr>
+  )}
               
             </tbody>
           </table>

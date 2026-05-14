@@ -1,12 +1,13 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const pool = require("../db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// Helper function for JWT
-const generateToken = (user) => {
+// Helper function for JWT - No destructuring syntax utilized
+const generateToken = (userObject) => {
     return jwt.sign(
-        { id: user.id, email: user.email }, 
+        { id: userObject.id, email: userObject.email }, 
         process.env.JWT_SECRET, 
         { expiresIn: "1d" }
     );
@@ -15,35 +16,39 @@ const generateToken = (user) => {
 // REGISTER
 router.post("/register", async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const nameValue = req.body.name;
+        const emailValue = req.body.email;
+        const passwordValue = req.body.password;
 
         // Basic Validation
-        if (!name || !email || !password) {
+        if (!nameValue || !emailValue || !passwordValue) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        //Check if user exists
-        const userExists = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-        if (userExists.rows.length > 0) {
-            return res.status(409).json({ message: "Email already registered!" });
-        }
+        // Check if user exists
+        const userExists = await pool.query("SELECT * FROM users WHERE email = $1", [emailValue]);
+       
 
         // Hash password
         const saltRounds = 10;
-        const hash = await bcrypt.hash(password, saltRounds);
+        const hash = await bcrypt.hash(passwordValue, saltRounds);
 
-        // Insert new user
+    
         const result = await pool.query(
-            "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email",
-            [name, email, hash]
+            "INSERT INTO users (name, email, password, type) VALUES ($1, $2, $3, $4) RETURNING id, name, email, type",
+            [nameValue, emailValue, hash, "user"]
         );
 
         const newUser = result.rows[0];
 
-        //Respond
         res.status(201).json({ 
             message: "User registered successfully",
-            user: newUser 
+            user: {
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email,
+                type: newUser.type
+            }
         });
 
     } catch (error) {
@@ -52,56 +57,61 @@ router.post("/register", async (req, res) => {
     }
 });
 
-//login
+// LOGIN
 router.post("/login", async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const emailValue = req.body.email;
+        const passwordValue = req.body.password;
 
         // Validation
-        if (!email || !password) {
+        if (!emailValue || !passwordValue) {
             return res.status(400).json({ message: "Email and password are required" });
         }
 
-        //Find user
-        const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+        // Find user from database
+        const result = await pool.query("SELECT * FROM users WHERE email = $1", [emailValue]);
         
         if (result.rows.length === 0) {
+            console.log("Login Failure: No match found for email:", emailValue);
             return res.status(401).json({ message: "Invalid email or password" });
         }
 
         const user = result.rows[0];
 
-        //  Check password
-        const isValid = await bcrypt.compare(password, user.password);
+        // Check password matching criteria
+        const isValid = await bcrypt.compare(passwordValue, user.password);
         if (!isValid) {
+            console.log("Login Failure: Incorrect password hash check for:", emailValue);
             return res.status(401).json({ message: "Invalid email or password" });
         }
-         const token = generateToken(user);
-       //check for admin
-      if (user.type === "admin") {
 
-    return res.status(200).json({
-        message: "Admin Login",
-        token: token, 
-        user: { 
-            id: user.id, 
-            email: user.email, 
-            type: user.type
+        const token = generateToken(user);
+        console.log("User successfully validated. System Account Type:", user.type);
+
+        // Check for admin type value explicitly
+        if (user.type === "admin") {
+            return res.status(200).json({
+                message: "Admin Login",
+                token: token, 
+                user: { 
+                    id: user.id, 
+                    email: user.email, 
+                    type: user.type
+                }
+            });
+        } else {
+            
+            return res.status(200).json({ 
+                message: "Logged in successfully",
+                token: token,
+                user: { 
+                    id: user.id, 
+                    email: user.email, 
+                    name: user.name,
+                    type: user.type
+                }
+            });
         }
-    });
-}else{
-    //normal user
-   return res.status(200).json({ 
-            message: "Logged in successfully",
-            token: token,
-            user: { 
-                id: user.id, 
-                email: user.email, 
-                name: user.name 
-            }
-        });
-
-}
 
     } catch (error) {
         console.error("LOGIN ERROR:", error.message);

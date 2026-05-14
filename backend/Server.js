@@ -15,6 +15,8 @@ app.use("/api/hostauth", require("./Routes/hostauth"));
 app.use("/api/prop", require("./Routes/prop"));
 app.use("/api/detail",require("./Routes/detail"));
 app.use("/api/status",require("./Routes/status"));
+
+app.use("/api/prop",require("./Routes/admin"));
 app.listen(5000, () => {
   console.log("server is running at 5000");
 });

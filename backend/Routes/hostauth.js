@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv=require('dotenv').config();
 // signup host
+
 router.post("/signuphost", async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -12,9 +13,7 @@ router.post("/signuphost", async (req, res) => {
         if (result.rows.length > 0) {
             return res.status(400).json({ message: "Email already registered" });
         }
-
         const hash = await bcrypt.hash(password, 10);
-
         const data = await pool.query(
             "INSERT INTO host (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email",
             [name, email, hash]
@@ -50,18 +49,20 @@ router.post("/loginhost", async (req, res) => {
             console.error("JWT_SECRET is missing from environment variables");
             return res.status(500).json({ message: "Server configuration error" });
         }
-
+      
         
         const token = jwt.sign(
-            { id: user.id, email: user.email }, 
+            { id: user.id, email: user.email , hostid:user.id
+            },
             process.env.JWT_SECRET, 
             { expiresIn: '1d' } 
         );
         console.log(token);
+        
         res.status(200).json({ 
             message: "You are logged in successfully",
             token: token,
-            user: { id: user.id, email: user.email }
+            user: { id: user.id, name: user.name, email: user.email,hostid:user.id }
         });
 
     } catch (error) {

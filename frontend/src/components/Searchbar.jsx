@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 const Searchbar = () => {
   const [query,setquery]=useState("");
   const [places,setplaces]=useState([]);
-   const API_KEY="071c7877e6a84f83888175d08827cbe7";
 
 const handleNearby = async () => {
   try {
@@ -16,7 +15,7 @@ const handleNearby = async () => {
   }
 };
   useEffect(()=>{
-    //if query empty setplaces null
+    
     if (!query) {
   setplaces([]);
   return;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Added Link
+import { Link, useNavigate } from "react-router-dom";
 
 const Loginhost = () => {
   const [email, setEmail] = useState("");
@@ -18,10 +18,19 @@ const Loginhost = () => {
       const data = await res.json().catch(() => ({}));
 
       if (res.ok) {
+    
+        localStorage.setItem("token", data.token);
+        console.log(data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+    
+
         alert("Login as host Successful");
-        navigate("/Hostdashboard");
+        
         setEmail("");
         setPassword("");
+
+
+        navigate("/Hostdashboard");
       } else {
         alert(data.message || "Login Failed");
       }
@@ -35,7 +44,6 @@ const Loginhost = () => {
     <div className="min-h-screen bg-blue-100 flex items-center justify-center px-4">
       <div className="max-w-6xl w-full border-2 border-b-gray-100 bg-blue-50 rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2">
         <div className="flex flex-col items-center justify-center min-h-[70vh] p-6 max-w-md mx-auto">
-          {/* Changed text to Login */}
           <h2 className="text-4xl font-bold text-gray-800 mb-10">Host Login</h2>
           
           <form onSubmit={handleLogin}>

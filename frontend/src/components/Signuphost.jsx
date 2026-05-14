@@ -87,7 +87,7 @@ const Signuphost = () => {
         </button>
         <p className="text-center mt-8 text-gray-600 text-xl ">
             Already have an account?{" "}
-            <Link to="/login" className="text-rose-500 hover:underline text-xl font-semibold ">
+            <Link to="/loginhost" className="text-rose-500 hover:underline text-xl font-semibold ">
               Login
             </Link>
           </p>
